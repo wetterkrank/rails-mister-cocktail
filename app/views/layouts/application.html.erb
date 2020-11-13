@@ -15,11 +15,10 @@
 
   <body>
     <div class="navbar-lewagon">
-      <%= link_to cocktails_path do %>
-        <%= image_tag "logo-A.jpg", alt: "A", class: "navbar-brand" %>
-      <% end %>
-      <span>little book of</span>
-      <%= image_tag "logo-cocktails.jpg", alt: "cocktails", class: "navbar-brand" %>
+    <a href="/">
+      <span class="logo-text">My little book of</span>
+      <%= image_tag "logo-cocktails2.jpg", alt: "cocktails", class: "navbar-brand" %>
+    </a>
     </div>
     <%= yield %>
   </body>

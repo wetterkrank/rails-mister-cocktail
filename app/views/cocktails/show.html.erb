@@ -3,33 +3,37 @@
     <div class="d-flex justify-content-between">
 
         <div class="description mr-5">
-        <h1><%= @cocktail.name %></h1>
-        <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill if @cocktail.photo.attached?%>
-
-            <ul>
-                <% @cocktail.doses.each do |dose| %>
-                    <li class="ingredient">
-                        <%= dose.ingredient.name %>, <%= dose.description %>
-                        <%= link_to delete_dose_path(dose), method: "delete" do %>
-                            <i class="lni lni-trash"></i>
+            <h1><%= @cocktail.name %></h1>
+            <div class="d-flex">
+                <%= cl_image_tag @cocktail.photo.key, class: "mr-3", height: 300, width: 400, crop: :fill if @cocktail.photo.attached?%>
+                <div>
+                    <ul>
+                        <% @cocktail.doses.each do |dose| %>
+                            <li class="ingredient">
+                                <%= dose.ingredient.name %>, <%= dose.description %>
+                                <%= link_to delete_dose_path(dose), method: "delete" do %>
+                                    <i class="lni lni-trash"></i>
+                                <% end %>
+                            </li>
                         <% end %>
-                    </li>
-                <% end %>
-            </ul>
+                    </ul>
+                    <a href="" id="new-ingredient-btn" class="plus-btn"><i class="mt-3 lni lni-circle-plus"></i></a>
+                </div>
 
+                <div class="new-form">
+                    <h4 class="">Add an ingredient:</h3>
+                    <%# flash.each do |type, msg| %>
+                    <%# <div class="alert alert-warning" role="alert"> %>
+                        <%#= msg %>
+                    <%# </div> %>
+                    <%# end %>
+                    <%= simple_form_for [@cocktail, Dose.new()] do |f| %>
+                        <%= f.association :ingredient, label: "Ingredient" %>
+                        <%= f.input :description, label: "Description" %>
+                        <%= f.submit "Add" %>
+                    <% end %>
+                </div>
+            </div>
         </div>    
-        <div class="new-form">
-            <h3 class="">Add an ingredient:</h3>
-            <%# flash.each do |type, msg| %>
-            <%# <div class="alert alert-warning" role="alert"> %>
-                <%#= msg %>
-            <%# </div> %>
-            <%# end %>
-            <%= simple_form_for [@cocktail, Dose.new()] do |f| %>
-                <%= f.association :ingredient, label: "Ingredient" %>
-                <%= f.input :description, label: "Description" %>
-                <%= f.submit "Add" %>
-            <% end %>
-        </div>
     </div>
 </div>
