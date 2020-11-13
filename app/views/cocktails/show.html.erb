@@ -4,7 +4,7 @@
 
         <div class="description mr-5">
         <h1><%= @cocktail.name %></h1>
-        <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill %>
+        <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill if @cocktail.photo.attached?%>
 
             <ul>
                 <% @cocktail.doses.each do |dose| %>
@@ -16,7 +16,7 @@
                     </li>
                 <% end %>
             </ul>
-            
+
         </div>    
         <div class="new-form">
             <h3 class="">Add an ingredient:</h3>
