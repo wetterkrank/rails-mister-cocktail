@@ -18,7 +18,8 @@ class DosesController < ApplicationController
     else
       # render :new  # this renders the :new view for doses controller
       # render "cocktails/show"  # this renders the cocktails/show view, but the URL isn't nice
-      redirect_to @dose.cocktail, notice: "Error while saving the ingredient"
+      # message = @dose.errors.messages.map{|k,v| "#{k} #{v}"}.join('; ')
+      redirect_to @dose.cocktail, notice: "There was a problem with this selection"
     end
   end
 

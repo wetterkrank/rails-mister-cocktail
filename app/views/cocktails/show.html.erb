@@ -1,28 +1,35 @@
-<% flash.each do |type, msg| %>
-<div class="alert alert-warning" role="alert">
-    <%= msg %>
-</div>
-<% end %>
-
 <div class="container mt-5">
-    <h1><%= @cocktail.name %></h1>
 
-    <ul>
-        <% @cocktail.doses.each do |dose| %>
-            <li>
-                <%= dose.ingredient.name %>, <%= dose.description %>
-                <%= link_to delete_dose_path(dose), method: "delete" do %>
-                    <i class="lni lni-trash"></i>
+    <div class="d-flex justify-content-between">
+
+        <div class="description mr-5">
+        <h1><%= @cocktail.name %></h1>
+        <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill %>
+
+            <ul>
+                <% @cocktail.doses.each do |dose| %>
+                    <li class="ingredient">
+                        <%= dose.ingredient.name %>, <%= dose.description %>
+                        <%= link_to delete_dose_path(dose), method: "delete" do %>
+                            <i class="lni lni-trash"></i>
+                        <% end %>
+                    </li>
                 <% end %>
-            </li>
-        <% end %>
-    </ul>
-
-    <h3 class="mt-5">Add an ingredient:</h3>
-    <%= simple_form_for [@cocktail, Dose.new()] do |f| %>
-        <%= f.association :ingredient, label: "Ingredient" %>
-        <%= f.input :description, label: "Description" %>
-        <%= f.submit "Add" %>
-    <% end %>
-
+            </ul>
+            
+        </div>    
+        <div class="new-form">
+            <h3 class="">Add an ingredient:</h3>
+            <%# flash.each do |type, msg| %>
+            <%# <div class="alert alert-warning" role="alert"> %>
+                <%#= msg %>
+            <%# </div> %>
+            <%# end %>
+            <%= simple_form_for [@cocktail, Dose.new()] do |f| %>
+                <%= f.association :ingredient, label: "Ingredient" %>
+                <%= f.input :description, label: "Description" %>
+                <%= f.submit "Add" %>
+            <% end %>
+        </div>
+    </div>
 </div>

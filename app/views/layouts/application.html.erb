@@ -16,9 +16,10 @@
   <body>
     <div class="navbar-lewagon">
       <%= link_to cocktails_path do %>
-        <%= image_tag "logo-A.jpg", alt: "Open", class: "navbar-brand" %>
+        <%= image_tag "logo-A.jpg", alt: "A", class: "navbar-brand" %>
       <% end %>
-      <span>little book of cocktails</span>
+      <span>little book of</span>
+      <%= image_tag "logo-cocktails.jpg", alt: "cocktails", class: "navbar-brand" %>
     </div>
     <%= yield %>
   </body>

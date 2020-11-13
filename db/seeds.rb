@@ -11,12 +11,12 @@ vodka = Ingredient.create(name: 'Vodka')
 
 ice_vodka = Cocktail.create(name: 'Ice Vodka')
 
-dose = Dose.new(description: "50ml vodka")
+dose = Dose.new(description: "50ml")
 dose.ingredient = vodka
 dose.cocktail = ice_vodka
 dose.save
 
-dose = Dose.new(description: "2 ice cubes")
+dose = Dose.new(description: "2 cubes")
 dose.ingredient = ice
 dose.cocktail = ice_vodka
 dose.save
