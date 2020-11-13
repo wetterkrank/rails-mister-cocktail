@@ -1,3 +1,17 @@
 // Place all the styles related to the cocktails controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#new-cocktail-btn {
+    font-size: x-large;
+    color: #c4c4c4;
+    &:hover {
+        color: white;
+    }
+}
+
+#cocktails-list {
+    li {
+        margin: 0.5rem 0;
+    }
+}

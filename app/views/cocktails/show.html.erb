@@ -1,12 +1,28 @@
+<% flash.each do |type, msg| %>
+<div class="alert alert-warning" role="alert">
+    <%= msg %>
+</div>
+<% end %>
+
 <div class="container mt-5">
     <h1><%= @cocktail.name %></h1>
 
     <ul>
         <% @cocktail.doses.each do |dose| %>
-            <li><%= dose.ingredient.name %>, <%= dose.description %></li>
+            <li>
+                <%= dose.ingredient.name %>, <%= dose.description %>
+                <%= link_to delete_dose_path(dose), method: "delete" do %>
+                    <i class="lni lni-trash"></i>
+                <% end %>
+            </li>
         <% end %>
     </ul>
 
-    <%= link_to "Add something", new_cocktail_dose_path(@cocktail) %>
+    <h3 class="mt-5">Add an ingredient:</h3>
+    <%= simple_form_for [@cocktail, Dose.new()] do |f| %>
+        <%= f.association :ingredient, label: "Ingredient" %>
+        <%= f.input :description, label: "Description" %>
+        <%= f.submit "Add" %>
+    <% end %>
 
 </div>
